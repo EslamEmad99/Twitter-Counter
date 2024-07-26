@@ -1,0 +1,92 @@
+/**
+ * Using a version catalog allows us to centralize dependency management.
+ * This makes it easier to update dependency versions in one place, ensuring consistency across the project.
+ * It also improves readability and maintainability of our build scripts.
+ * **/
+plugins {
+    alias libs.plugins.androidApplication
+    alias libs.plugins.kotlinAndroid
+    alias libs.plugins.hilt
+    // replacing this id whit alias will crash because this plugin doesn't have a version
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace 'com.halan.twitter_counter'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.halan.twitter_counter"
+        minSdk 24
+        targetSdk 34
+        versionCode libs.versions.versionCode.get().toInteger()
+        versionName libs.versions.versionName.get()
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+
+dependencies {
+    implementation project(':data')
+    implementation project(':domain')
+
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.androidx.constraintlayout
+    implementation libs.androidx.fragment.ktx
+    implementation libs.androidx.lifecycle.runtime.ktx
+    implementation libs.material
+
+    // for the view and life cycle
+    implementation libs.androidx.lifecycle.livedata.ktx
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+
+    // Hilt for dependency injection
+    implementation libs.hilt.android
+    implementation libs.androidx.swiperefreshlayout
+    kapt libs.hilt.compiler
+
+    // for different screen sizes
+    implementation libs.sdp.android
+    implementation libs.ssp.android
+
+    // Coroutines for asynchronous
+    implementation libs.kotlinx.coroutines.core
+    implementation libs.kotlinx.coroutines.android
+    implementation libs.retrofit2.kotlin.coroutines.adapter
+
+    // testing
+    testImplementation libs.kotlin.test
+    testImplementation libs.kotlinx.coroutines.test
+    testImplementation libs.mockito.core
+    testImplementation libs.mockito.kotlin
+    testImplementation libs.junit
+    testImplementation libs.androidx.core.testing
+    testImplementation libs.turbine
+}
+
+kapt {
+    correctErrorTypes = true
+}
