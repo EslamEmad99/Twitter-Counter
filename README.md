@@ -73,7 +73,7 @@ To run the unit tests, execute the following command:
 | ![Screenshot 1](Screenshots/7.jpeg) |                                     |
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+This project is licensed under the MIT License. See the [LICENSE.txt](LICENSE.txt) file for details.
 
 ## Contact
 For any questions or feedback, feel free to reach out to the project maintainer:
