@@ -1,0 +1,54 @@
+/**
+ * Using a version catalog allows us to centralize dependency management.
+ * This makes it easier to update dependency versions in one place, ensuring consistency across the project.
+ * It also improves readability and maintainability of our build scripts.
+ * **/
+plugins {
+    alias libs.plugins.androidLibrary
+    alias libs.plugins.kotlinAndroid
+    id 'kotlin-kapt'
+    alias libs.plugins.hilt
+}
+
+android {
+    namespace 'com.toccan.data'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 24
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+
+dependencies {
+    implementation project(':domain')
+
+    // Hilt for dependency injection
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
+
+    // Coroutines for asynchronous
+    implementation libs.kotlinx.coroutines.core
+    implementation libs.kotlinx.coroutines.android
+    implementation libs.retrofit2.kotlin.coroutines.adapter
+}
+
+kapt {
+    correctErrorTypes = true
+}

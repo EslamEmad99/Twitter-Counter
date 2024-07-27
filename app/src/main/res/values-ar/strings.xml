@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="twitter_character_count">عدد حروف تويتر</string>
+    <string name="characters_typed">الأحرف المكتوبة</string>
+    <string name="characters_remaining">الأحرف المتبقية</string>
+    <string name="tweet_hint">ابدأ الكتابة! يمكنك إدخال ما يصل إلى 280 حرفًا</string>
+    <string name="copy_text">نسخ النص</string>
+    <string name="clear_text">حذف النص</string>
 </resources>
