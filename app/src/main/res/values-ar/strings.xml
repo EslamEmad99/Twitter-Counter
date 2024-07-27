@@ -11,4 +11,5 @@
     <string name="are_you_sure_you_want_to_clear_the_text">هل أنت متأكد أنك تريد مسح النص؟</string>
     <string name="confirm">تأكيد</string>
     <string name="cancel">إلغاء</string>
+    <string name="tweeted_successfully">تم التغريد بنجاح</string>
 </resources>

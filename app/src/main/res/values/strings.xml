@@ -11,5 +11,6 @@
     <string name="are_you_sure_you_want_to_clear_the_text">Are you sure you want to clear the text?</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
+    <string name="tweeted_successfully">Tweeted successfully</string>
 
 </resources>

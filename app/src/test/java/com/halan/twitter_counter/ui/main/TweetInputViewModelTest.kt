@@ -2,7 +2,9 @@ package com.halan.twitter_counter.ui.main
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.halan.domain.use_case.main.CountTweetCharactersUseCase
+import com.halan.domain.use_case.main.PostTweeUseCase
 import com.halan.domain.use_case.main.ValidateTweetLengthUseCase
+import com.halan.twitter_counter.ui.tweet_input.TweetInputViewModel
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -16,7 +18,7 @@ import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.kotlin.whenever
 
 @RunWith(MockitoJUnitRunner::class)
-class MainViewModelTest {
+class TweetInputViewModelTest {
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -27,11 +29,18 @@ class MainViewModelTest {
     @Mock
     private lateinit var validateTweetLengthUseCase: ValidateTweetLengthUseCase
 
-    private lateinit var viewModel: MainViewModel
+    @Mock
+    private lateinit var postTweetUseCase: PostTweeUseCase
+
+    private lateinit var viewModel: TweetInputViewModel
 
     @Before
     fun setUp() {
-        viewModel = MainViewModel(countTweetCharactersUseCase, validateTweetLengthUseCase)
+        viewModel = TweetInputViewModel(
+            countTweetCharactersUseCase = countTweetCharactersUseCase,
+            validateTweetLengthUseCase = validateTweetLengthUseCase,
+            postTweetUseCase = postTweetUseCase,
+        )
     }
 
     @Test
