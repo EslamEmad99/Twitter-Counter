@@ -75,6 +75,17 @@ To run the unit tests, execute the following command:
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE.txt) file for details.
 
+## To-Do List
+
+Here are the upcoming tasks for this project:
+
+- **Replace XML with Jetpack Compose**: Migrate existing XML layouts to Jetpack Compose for modern UI development.
+- **Add UI Tests**: Implement UI tests to ensure the functionality and performance of the user interface.
+- **Replace Hilt with Koin**: Transition from Hilt to Koin for dependency injection to simplify and customize DI configurations.
+- **Replace Retrofit with Ktor**: Update networking calls by replacing Retrofit with Ktor for better performance and flexibility.
+
+Feel free to contribute or suggest improvements!
+
 ## Contact
 For any questions or feedback, feel free to reach out to the project maintainer:
 
