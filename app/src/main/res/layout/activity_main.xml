@@ -157,6 +157,7 @@
                 style="@style/style_primary_btn"
                 android:layout_margin="@dimen/_12sdp"
                 android:text="@string/clear_text"
+                android:enabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btn_clear_text" />

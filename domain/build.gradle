@@ -23,7 +23,7 @@ java {
 }
 
 allOpen {
-    annotation("com.eslam.domain.use_case.util.Mockable") // Define your own annotation
+    annotation("com.halan.domain.use_case.util.Mockable") // Define your own annotation
 }
 
 dependencies {
