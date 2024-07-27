@@ -36,7 +36,7 @@ class MainViewModelTest {
 
     @Test
     fun `test empty tweet`() = runTest {
-        val tweet = ""
+        val tweet = "            "
         val tweetLength = 0
 
         whenever(countTweetCharactersUseCase(tweet)).thenReturn(tweetLength)

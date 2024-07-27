@@ -64,8 +64,7 @@
                         style="@style/tv_text_header"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="@string/max_count" />
+                        android:gravity="center" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </com.google.android.material.card.MaterialCardView>
 
@@ -103,8 +102,7 @@
                         style="@style/tv_text_header"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
-                        tools:text="280" />
+                        android:gravity="center" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </com.google.android.material.card.MaterialCardView>
 
@@ -156,8 +154,8 @@
                 android:id="@+id/btn_post_tweet"
                 style="@style/style_primary_btn"
                 android:layout_margin="@dimen/_12sdp"
-                android:text="@string/clear_text"
                 android:enabled="false"
+                android:text="@string/post_tweet"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btn_clear_text" />

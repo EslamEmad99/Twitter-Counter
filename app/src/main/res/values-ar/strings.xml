@@ -6,4 +6,9 @@
     <string name="tweet_hint">ابدأ الكتابة! يمكنك إدخال ما يصل إلى 280 حرفًا</string>
     <string name="copy_text">نسخ النص</string>
     <string name="clear_text">حذف النص</string>
+    <string name="post_tweet">نشر التغريدة</string>
+    <string name="warning">تحذير</string>
+    <string name="are_you_sure_you_want_to_clear_the_text">هل أنت متأكد أنك تريد مسح النص؟</string>
+    <string name="confirm">تأكيد</string>
+    <string name="cancel">إلغاء</string>
 </resources>
