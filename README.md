@@ -10,6 +10,8 @@ Twitter Counter is a simple application that allows users to input text and see 
 - Handles special cases like URLs, emojis, and complex language characters.
 - Post tweets directly from the app.
 
+**Note:** This project currently uses a fake API for the tweet posting functionality. The purpose of this fake API is to simulate the posting of tweets without making actual network requests. This setup is useful for testing and development purposes.
+
 ## Architecture
 
 The app follows the MVVM (Model-View-ViewModel) architecture pattern and is divided into several modules:
