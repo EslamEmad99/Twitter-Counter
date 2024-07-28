@@ -15,17 +15,23 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.halan.domain.use_case.util.Constants.MAX_TWEET_LENGTH
 import com.halan.twitter_counter.R
 import com.halan.twitter_counter.databinding.ViewTweetInputBinding
+import com.halan.twitter_counter.util.NetworkExtensionsActions
+import com.halan.twitter_counter.util.ProgressDialog
+import com.halan.twitter_counter.util.ToastType
+import com.halan.twitter_counter.util.applyCommonSideEffects
+import com.halan.twitter_counter.util.showToast
 import kotlinx.coroutines.launch
 
 class TweetInputView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : LinearLayout(context, attrs, defStyleAttr) {
+) : LinearLayout(context, attrs, defStyleAttr), NetworkExtensionsActions {
 
     private val binding: ViewTweetInputBinding =
         ViewTweetInputBinding.inflate(LayoutInflater.from(context), this, true)
 
+    private lateinit var progressDialog: ProgressDialog
     private lateinit var viewModel: TweetInputViewModel
     private lateinit var lifecycleOwner: LifecycleOwner
     private lateinit var listener: PostTweetListener
@@ -39,6 +45,7 @@ class TweetInputView @JvmOverloads constructor(
         this.lifecycleOwner = lifecycleOwner
         this.listener = listener
 
+        progressDialog = ProgressDialog(context)
         countTweetLength()
         observeTweetTextLength()
         observeIsValidTweetLength()
@@ -75,12 +82,13 @@ class TweetInputView @JvmOverloads constructor(
     private fun observePostTweet() {
         lifecycleOwner.lifecycleScope.launch {
             lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.postTweetResponse.collect { isSuccess ->
-                    if (isSuccess) {
-                        listener.onPostTweetSuccess()
-                        clearTweetText()
-                    } else {
-                        listener.onPostTweetFail("Todo")
+                viewModel.postTweetResponse.collect {
+                    it.applyCommonSideEffects(this@TweetInputView) { response ->
+                        response.data?.let { data ->
+                            if (data.isSuccess) {
+                                listener.onPostTweetSuccess()
+                            }
+                        }
                     }
                 }
             }
@@ -133,5 +141,33 @@ class TweetInputView @JvmOverloads constructor(
 
     private fun clearTweetText() {
         binding.etTweet.setText("")
+    }
+
+    override fun onLoad(showLoading: Boolean) {
+        progressDialog.statusProgress(showLoading)
+    }
+
+    override fun onCommonError(exceptionMsgId: Int) {
+        onLoad(false)
+        progressDialog.statusProgress(false)
+        context.showToast(context.getString(exceptionMsgId), ToastType.ERROR)
+    }
+
+    override fun onShowSuccessToast(msg: String?) {
+        context.showToast(msg, ToastType.SUCCESS)
+    }
+
+    override fun onFail(msg: String?) {
+        context.showToast(msg, ToastType.ERROR)
+    }
+
+    override fun authorizationNeedActive(msg: String) {
+        context.showToast(msg, ToastType.WARNING)
+    }
+
+    override fun needApproval(msg: String?) {
+        msg?.let {
+            context.showToast(it, ToastType.WARNING)
+        }
     }
 }

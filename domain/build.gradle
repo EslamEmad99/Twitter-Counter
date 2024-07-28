@@ -32,8 +32,14 @@ dependencies {
     implementation libs.kotlinx.coroutines.android
     implementation libs.retrofit2.kotlin.coroutines.adapter
 
+    // Moshi for remote models
+    implementation libs.moshi.kotlin
+
     // Dagger 2 for dependency injection
     implementation libs.dagger
+
+    //Gson
+    implementation libs.gson
 
     // testing
     testImplementation libs.kotlin.test

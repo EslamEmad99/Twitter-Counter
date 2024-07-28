@@ -33,10 +33,6 @@ class MainActivity : AppCompatActivity(), PostTweetListener {
         Toast.makeText(this, getString(R.string.tweeted_successfully), Toast.LENGTH_SHORT).show()
     }
 
-    override fun onPostTweetFail(message: String) {
-
-    }
-
     private fun handleClicks() {
         binding.apply {
             toolbar.ivBack.setOnClickListener {

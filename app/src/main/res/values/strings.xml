@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Twitter Counter</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="something_went_wrong">Something went wrong, please try again later</string>
     <string name="twitter_character_count">Twitter character count</string>
     <string name="characters_typed">Characters Typed</string>
     <string name="characters_remaining">Characters Remaining</string>

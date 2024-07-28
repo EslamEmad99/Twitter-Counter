@@ -2,9 +2,12 @@ package com.halan.twitter_counter.ui.tweet_input
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.halan.domain.model.BaseResponse
+import com.halan.domain.model.PostTweetResponse
 import com.halan.domain.use_case.main.CountTweetCharactersUseCase
 import com.halan.domain.use_case.main.PostTweeUseCase
 import com.halan.domain.use_case.main.ValidateTweetLengthUseCase
+import com.halan.domain.util.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -24,7 +27,8 @@ class TweetInputViewModel @Inject constructor(
     private var _isValidTweetLength = MutableStateFlow(false)
     val isValidTweetLength = _isValidTweetLength.asStateFlow()
 
-    private var _postTweetResponse = MutableStateFlow(false)
+    private var _postTweetResponse =
+        MutableStateFlow<DataState<BaseResponse<PostTweetResponse>>>(DataState.Idle)
     val postTweetResponse = _postTweetResponse.asStateFlow()
 
     fun countTweetLength(tweet: String) {
